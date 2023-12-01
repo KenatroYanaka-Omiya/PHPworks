@@ -1,53 +1,44 @@
+<?php
+   $area = array('北海道','東北','関東','中部','近畿','中国','四国','九州');
+   $age = array('10代以下','20代','30代','40代','50代','60代','70代','80代以上');
+   $know_from = array('Yahoo!','Google','Facebook','Twitter','その他');
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>データ登録</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <style>div{padding: 10px;font-size:16px;}</style>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>アンケートフォーム</title>
 </head>
 <body>
-
-<!-- Head[Start] -->
-<header>
-</header>
-<!-- Head[End] -->
-
-<!-- Main[Start] -->
-<h1>アンケート入力画面</h1>
-<form method="post" action="insert.php">
-  <div class="jumbotron">
-     <label>お名前<br>
-        <input type="text" name="name" placeholder="例）山田　太郎"></label><br>
-     <label>お住まい<br>
-        <select name="area" id="area">
-            <option value="1">北海道</option>
-            <option value="2">東北</option>
-            <option value="3">関東</option>
-            <option value="4">中部</option>
-            <option value="5">近畿</option>
-            <option value="6">中国</option>
-            <option value="7">四国</option>
-            <option value="8">九州</option>
-        </select><br>
-     <label>年代<br>
-        <input type="radio" name="" value="">10代以下<br>
-        <input type="radio" name="" value="">20代<br>
-        <input type="radio" name="" value="">30代<br>
-        <input type="radio" name="" value="">40代<br>
-        <input type="radio" name="" value="">50代<br>
-        <input type="radio" name="" value="">60代<br>
-        <input type="radio" name="" value="">70代<br>
-        <input type="radio" name="" value="">80代以上<br>
-
-
-     <label>当社の製品をどこでお知りになりましたか？<br>
-     <label>ご意見・ご要望<br><textArea name="naiyou" rows="4" cols="40"></textArea></label>
-     <input type="submit" value="送信する">
-  </div>
-</form>
-<!-- Main[End] -->
-
-
+   <h1>アンケート入力画面</h1>
+   <form method="post" action="config.php">
+      <label>お名前</label><br>
+      <input type="text" name="name" placeholder="例）山田　太郎" required></label><br>
+      <label>お住まい</label><br>
+      <select name="area" id="area" required>
+         <?php
+            for($i=0; $i<count($area); $i++){
+               echo "<option value='<? $i+1 ?>'>{$area[$i]}\n";
+            }
+         ?>
+      </select><br>
+      <label>年代</label><br>
+      <?php
+         for($i=0; $i<count($age); $i++){
+         echo "<input type='radio' name='age' value='<? $i+1 ?>' required>{$age[$i]}<br>\n";
+         }
+      ?>
+      <label>当社の製品をどこでお知りになりましたか？</label><br>
+      <?php
+         for($i=0; $i<count($know_from); $i++){
+         echo "<input type='checkbox' class='check' name='know_from[]' value='<? $i+1'?>{$know_from[$i]}<br>\n";
+         }        
+      ?>
+      <label>ご意見・ご要望<br><textArea name="comment" rows="20" cols="40"></textArea></label><br>
+      <button type="submit" onClick="return isCheck()">送信する</button>
+   </form>
+   
 </body>
 </html>
