@@ -21,7 +21,8 @@
       <select name="area" id="area" required>
          <?php
             for($i=0; $i<count($area); $i++){
-               echo "<option value='$i+1'>{$area[$i]}\n";
+               $j = $i+1;
+               echo "<option value='$j'>{$area[$i]}\n";
             }
          ?>
       </select><br>
@@ -29,14 +30,16 @@
       <label>年代</label><br>
       <?php
          for($i=0; $i<count($age); $i++){
-            echo "<input type='radio' name='age' value='$i+1' required>{$age[$i]}<br>\n";
+            $j = $i+1; 
+            echo "<input type='radio' name='age' value='$j' required>{$age[$i]}<br>\n";
          }
       ?>
 
       <label>当社の製品をどこでお知りになりましたか？</label><br>
       <?php
          for($i=0; $i<count($know_from); $i++){
-         echo "<input type='checkbox' class='check' name='know_from[]' value='$i+1'>{$know_from[$i]}<br>\n";
+            $j = (int)$i+1;
+            echo "<input type='checkbox' class='check' name='know_from[]' value='$j'>{$know_from[$i]}<br>\n";
          }        
       ?>
 
