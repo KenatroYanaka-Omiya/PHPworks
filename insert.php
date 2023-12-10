@@ -1,6 +1,4 @@
 <?php
-
-
 //1. POSTデータ取得
 $name   = $_POST["name"];
 $area  = $_POST["area"];
@@ -19,8 +17,8 @@ $pdo = db_con();
 $sql = "INSERT INTO posts2(name,area,age,know_from,comment,created_at)VALUES(:name,:area,:age,:know_from,:comment,sysdate())";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-$stmt->bindValue(':area', $area, PDO::PARAM_STR);   
-$stmt->bindValue(':age', $age, PDO::PARAM_STR);
+$stmt->bindValue(':area', $area, PDO::PARAM_INT);   
+$stmt->bindValue(':age', $age, PDO::PARAM_INT);
 $stmt->bindValue(':know_from', $checkbox, PDO::PARAM_STR);
 $stmt->bindValue(':comment', $comment, PDO::PARAM_STR);
 $status = $stmt->execute();

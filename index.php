@@ -31,7 +31,7 @@
       <?php
          for($i=0; $i<count($age); $i++){
             $j = $i+1; 
-            echo "<input type='radio' name='age' value='$j' required>{$age[$i]}<br>\n";
+            echo "<input type='radio' name='age' value='$j'>{$age[$i]}<br>\n";
          }
       ?>
 
