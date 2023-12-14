@@ -1,7 +1,7 @@
 <?php
     $area = array('北海道','東北','関東','中部','近畿','中国','四国','九州');
     $age = array('10代以下','20代','30代','40代','50代','60代','70代','80代以上');
-    $know_from = array('Yahoo!','Google','Facebook','Twitter','その他');
+    $know_froms = array('Yahoo!','Google','Facebook','Twitter','その他');
 
 include "functions.php";
 $pdo = db_con();
@@ -12,13 +12,28 @@ $status = $stmt->execute();
 
 //３．データ表示
 $view = "";
+
 if ($status == false) {
     sqlError($stmt);
 } else {
     //Selectデータの数だけ自動でループしてくれる
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+        //https://www.techiedelight.com/ja/convert-comma-delimited-string-to-int-array-php/
+        $know_from = array_map('intval', explode(',', $result["know_from"]));
+
         $view .= '<p>';
-        $view .= $result["id"]."\r" . $result["name"]."\r" . $area[$result["area"]-1]."\r". $age[$result["age"]-1]."\r". $know_from[$result["know_from"]]."\r". $result["created_at"]."\r";
+        $view .= $result["id"]."\r" . $result["name"]."\r" . $area[$result["area"]-1]."\r". $age[$result["age"]-1]."\r";
+
+        foreach( $know_from as $hogehoge ) {
+            $view .= $know_froms[$hogehoge - 1]."\r";
+//          もし$know_from（配列）の中に1が入っていたら、$know_froms[0]（Yahoo）を$viewに追加する
+//          もし$know_from（配列）の中に2が入っていたら、$know_froms[$hogehoge-1]（Google）を$viewに追加する
+//          もし$know_from（配列）の中に3が入っていたら、$know_froms[2]（Facebook）を$viewに追加する
+//          もし$know_from（配列）の中に4が入っていたら、$know_froms[3]（Twitter）を$viewに追加する
+//          もし$know_from（配列）の中に5が入っていたら、$know_froms[4]（その他）を$viewに追加する
+        }
+        $view .= $result["created_at"]."\r";
         $view .= '<a href="detail.php?id='.$result["id"].'">';
         $view .= '[編集]';
         $view .= '</a>' ;
@@ -27,6 +42,7 @@ if ($status == false) {
         $view .= '</a>';
         $view .= '</p>';
     }
+
 }
 ?>
 
