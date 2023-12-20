@@ -48,7 +48,7 @@
       <button type="submit" onClick="return isCheck()">送信する</button>
    </form>
    
-   <script>
+<script>
    function isCheck() {
    let arr_checkBoxes = document.getElementsByClassName("check");
    let count = 0;
