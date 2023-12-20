@@ -1,5 +1,6 @@
 <?php
 //1.POSTでParamを取得
+$id = (int)$_POST["id"];
 $name   = $_POST["name"];
 $area  = $_POST["area"];
 $age    = $_POST["age"];
@@ -13,7 +14,7 @@ include "functions.php";
 $pdo = db_con();
 
 //3.更新(bindValue)
-//　基本的にinsert.phpの処理の流れです。
+//基本的にinsert.phpの処理の流れです。
 $sql = "UPDATE posts2 SET name=:name,area=:area,age=:age,Know_from=:know_from,comment=:comment WHERE id=:id";
 $stmt = $pdo->prepare($sql);
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -28,7 +29,7 @@ if ($status == false) {
     $error = $stmt->errorInfo();
     exit("ErrorSQL:".$error[2]);
 } else {
-    redirect("index.php");
+    redirect("admin.php");
 }
 
 ?>

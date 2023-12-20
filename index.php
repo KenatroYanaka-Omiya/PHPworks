@@ -21,7 +21,7 @@
       <select name="area" id="area" required>
          <?php
             for($i=0; $i<count($area); $i++){
-               $j = $i+1;
+               $j = (int)$i+1;
                echo "<option value='$j'>{$area[$i]}\n";
             }
          ?>
@@ -30,8 +30,8 @@
       <label>年代</label><br>
       <?php
          for($i=0; $i<count($age); $i++){
-            $j = $i+1; 
-            echo "<input type='radio' name='age' value='$j'>{$age[$i]}<br>\n";
+            $j = (int)$i+1; 
+            echo "<input type='radio' name='age' value='$j' required>{$age[$i]}<br>\n";
          }
       ?>
 
@@ -43,10 +43,27 @@
          }        
       ?>
 
-      <label>ご意見・ご要望<br><textArea name="comment" rows="20" cols="40"></textArea></label><br>
+      <label>ご意見・ご要望<br><textArea name="comment" rows="20" cols="40" required></textArea></label><br>
 
-      <button type="submit">送信する</button>
+      <button type="submit" onClick="return isCheck()">送信する</button>
    </form>
    
+   <script>
+   function isCheck() {
+   let arr_checkBoxes = document.getElementsByClassName("check");
+   let count = 0;
+   for (let i = 0; i < arr_checkBoxes.length; i++) {
+      if (arr_checkBoxes[i].checked) {
+            count++;
+      }
+   }
+   if (count > 0) {
+      return true;
+   } else {
+      window.alert("1つ以上選択してください。[当社の製品をどこでお知りになりましたか？]");
+      return false;
+   };
+}
+</script>
 </body>
 </html>

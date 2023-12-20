@@ -25,8 +25,8 @@ if ($status == false) {
         $view .= '<p>';
         $view .= $result["id"]."\r" . $result["name"]."\r" . $area[$result["area"]-1]."\r". $age[$result["age"]-1]."\r";
 
-        foreach( $know_from as $hogehoge ) {
-            $view .= $know_froms[$hogehoge - 1]."\r";
+        foreach( $know_from as $check ) {
+            $view .= $know_froms[$check - 1]."\r";
 //          もし$know_from（配列）の中に1が入っていたら、$know_froms[0]（Yahoo）を$viewに追加する
 //          もし$know_from（配列）の中に2が入っていたら、$know_froms[$hogehoge-1]（Google）を$viewに追加する
 //          もし$know_from（配列）の中に3が入っていたら、$know_froms[2]（Facebook）を$viewに追加する
@@ -41,6 +41,7 @@ if ($status == false) {
         $view .= '[削除]';
         $view .= '</a>';
         $view .= '</p>';
+    
     }
 
 }

@@ -8,6 +8,8 @@ $comment = $_POST["comment"];
 
 $checkbox = implode(",",$know_from);
 
+
+
 //2. DB接続します
 include "functions.php";
 $pdo = db_con();
