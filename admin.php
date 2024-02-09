@@ -28,7 +28,7 @@ if ($status == false) {
         foreach( $know_from as $check ) {
             $view .= $know_froms[$check - 1]."\r";
 //          もし$know_from（配列）の中に1が入っていたら、$know_froms[0]（Yahoo）を$viewに追加する
-//          もし$know_from（配列）の中に2が入っていたら、$know_froms[$hogehoge-1]（Google）を$viewに追加する
+//          もし$know_from（配列）の中に2が入っていたら、$know_froms[1]（Google）を$viewに追加する
 //          もし$know_from（配列）の中に3が入っていたら、$know_froms[2]（Facebook）を$viewに追加する
 //          もし$know_from（配列）の中に4が入っていたら、$know_froms[3]（Twitter）を$viewに追加する
 //          もし$know_from（配列）の中に5が入っていたら、$know_froms[4]（その他）を$viewに追加する
@@ -59,13 +59,13 @@ if ($status == false) {
     <a href="index.php">入力画面に戻る</a>
     <h1>管理者画面</h1>
     <tr>
-        <th>ID</th>
+        <!--<th>ID</th>
         <th>お名前</th>
         <th>お住まい</th>
         <th>年齢層</th>
         <th>知ったきっかけ</th>
         <th>作成日</th>
-        <th>操作</th>
+        <th>操作</th>-->
         <td><?= $view ?></td>
     </tr>
     
